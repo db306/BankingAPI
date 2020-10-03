@@ -1,8 +1,8 @@
 {
-  "name": "spendesk",
+  "name": "banking-api-spendesk",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "A simple Wallet driven prepaid card Banking Service for employees",
+  "author": "Daniel BORIS IGLESIA",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -23,10 +23,19 @@
   "dependencies": {
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
+    "@nestjs/cqrs": "^7.0.1",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/typeorm": "^7.1.4",
+    "class-transformer": "^0.3.1",
+    "class-validator": "^0.12.2",
+    "creditcard-generator": "0.0.7",
+    "pg": "^8.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "sqlite3": "^5.0.0",
+    "typeorm": "^0.2.28",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
