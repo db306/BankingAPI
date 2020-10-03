@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+    db:
+        image: postgres:12-alpine
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_DB=DB
+            - POSTGRES_USER=USER
+            - POSTGRES_PASSWORD=PASSWORD
+            - PGGSSENCMODE=disable
+        volumes:
+            - "dbdata:/var/lib/postgresql/data"
+volumes:
+    dbdata:
