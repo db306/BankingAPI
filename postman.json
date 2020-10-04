@@ -1,0 +1,389 @@
+{
+	"info": {
+		"_postman_id": "4396691a-3635-4629-b7b2-59b3e5d35c9b",
+		"name": "Spendesk Banking API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Create Wallet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e",
+								"type": "text"
+							},
+							{
+								"key": "X-User-Id",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"balance\": 10000,\n    \"currency\": \"GDP\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/wallet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"wallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Wallets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e",
+								"type": "text"
+							},
+							{
+								"key": "X-User-Id",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/wallet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"wallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer Funds",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e"
+							},
+							{
+								"key": "X-User-Id",
+								"type": "text",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"destinationWalletId\": \"2c4e45ec-5e07-4152-b225-b0a29d6b6abf\",\n    \"amount\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/wallet/f921308b-57cd-4ba5-aba6-6c9aa5bffad7/transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"wallet",
+								"f921308b-57cd-4ba5-aba6-6c9aa5bffad7",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Card",
+			"item": [
+				{
+					"name": "Create Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e",
+								"type": "text"
+							},
+							{
+								"key": "X-User-Id",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"walletId\": \"2c4e45ec-5e07-4152-b225-b0a29d6b6abf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Cards",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e",
+								"type": "text"
+							},
+							{
+								"key": "X-User-Id",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Block Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e"
+							},
+							{
+								"key": "X-User-Id",
+								"type": "text",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/card/a45bd449-da60-4cf5-8313-ed0b4b293ebf/block",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"card",
+								"a45bd449-da60-4cf5-8313-ed0b4b293ebf",
+								"block"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unblock Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e"
+							},
+							{
+								"key": "X-User-Id",
+								"type": "text",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/card/a45bd449-da60-4cf5-8313-ed0b4b293ebf/unblock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"card",
+								"a45bd449-da60-4cf5-8313-ed0b4b293ebf",
+								"unblock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Load Money",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e"
+							},
+							{
+								"key": "X-User-Id",
+								"type": "text",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/card/a45bd449-da60-4cf5-8313-ed0b4b293ebf/load",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"card",
+								"a45bd449-da60-4cf5-8313-ed0b4b293ebf",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unload Money",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"type": "text",
+								"value": "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e"
+							},
+							{
+								"key": "X-User-Id",
+								"type": "text",
+								"value": "3b8cbd4b-2365-4ab1-a907-8e28c75225fb"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/card/a45bd449-da60-4cf5-8313-ed0b4b293ebf/unload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"card",
+								"a45bd449-da60-4cf5-8313-ed0b4b293ebf",
+								"unload"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
