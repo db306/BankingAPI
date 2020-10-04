@@ -23,7 +23,7 @@ describe('Load Money to card', () => {
     const companyId = '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e';
     const amount = 500;
     const balance = 1000;
-    const currency = Currency.GDP;
+    const currency = Currency.GBP;
     const cardNumber = '4087551534272554';
     const ccv = '166';
     const walletId = '3b8cbd4b-2365-4ab1-a907-8e28c75225fb';
@@ -115,7 +115,7 @@ describe('Load Money to card', () => {
             jest.spyOn(cardRepository, 'findById').mockResolvedValue(cardMock);
             jest.spyOn(walletRepository, 'findById').mockResolvedValue(walletMock);
             await loadMoneyHandler.execute(command);
-            expect(eventBus.publish).toHaveBeenCalledWith(new MoneyLoadedEvent(amount, cardId));
+            expect(eventBus.publish).toHaveBeenCalledWith(new MoneyLoadedEvent(amount, cardId, currency, walletId));
         });
     })
 })

@@ -8,8 +8,12 @@ import {TypeormWalletRepository} from "./typeorm-wallet.repository";
 import {AddWalletHandler} from "./add-wallet/add-wallet.handler";
 import {GetWalletHandler} from "./get-wallet/get-wallet.handler";
 import {typeormDbConnection} from "../typeorm-db.connection";
+import {TransferFundsHandler} from "./transfer-funds/transfer-funds.handler";
+import {CurrencyConversionToken} from "./currency-conversion.token";
+import {XratesCurrencyConversionService} from "./xrates-currency-conversion.service";
+import {CommissionWalletService} from "./commission-wallet.service";
 
-const Commands = [AddWalletHandler];
+const Commands = [AddWalletHandler, TransferFundsHandler];
 const Queries = [GetWalletHandler];
 
 @Module({
@@ -23,6 +27,11 @@ const Queries = [GetWalletHandler];
             provide: WalletRepositoryToken,
             useClass: TypeormWalletRepository
         },
+        {
+            provide: CurrencyConversionToken,
+            useClass: XratesCurrencyConversionService
+        },
+        CommissionWalletService,
         ...Commands,
         ...Queries
     ],

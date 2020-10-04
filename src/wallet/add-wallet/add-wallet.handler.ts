@@ -19,7 +19,7 @@ export class AddWalletHandler implements ICommandHandler<AddWalletCommand>{
     async execute(command: AddWalletCommand): Promise<string>{
         const id = uuid.v4();
         const wallet = new Wallet(id, command.balance, command.currency, command.companyId);
-        await this.repository.save(wallet);
+        await this.repository.save([wallet]);
         this.eventBus.publish(new WalletAddedEvent(id, command.balance, command.currency, command.companyId));
         return id;
     }

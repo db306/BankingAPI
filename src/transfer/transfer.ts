@@ -10,7 +10,7 @@ export class Transfer{
     @Column('timestamp')
     timestamp: Date;
 
-    @Column('bigint')
+    @Column('int')
     amount: number;
 
     @Column({length: "3"})

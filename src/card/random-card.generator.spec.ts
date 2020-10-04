@@ -33,7 +33,7 @@ describe('Random Card Generator', () => {
     });
 
     it('should return a different number if card exists', async () => {
-        const cardMock = new Card('67547d30-8aeb-4a69-8af2-97b71dfdbfda', Currency.GDP, 0, '4087551534272554', '166', '67547d30-8aeb-4a69-8af2-97b71dfdbfda', '3b8cbd4b-2365-4ab1-a907-8e28c75225fb');
+        const cardMock = new Card('67547d30-8aeb-4a69-8af2-97b71dfdbfda', Currency.GBP, 0, '4087551534272554', '166', '67547d30-8aeb-4a69-8af2-97b71dfdbfda', '3b8cbd4b-2365-4ab1-a907-8e28c75225fb');
         jest.spyOn(cardRepository, 'findCardByNumber').mockReturnValueOnce(Promise.resolve(cardMock)).mockReturnValueOnce(undefined);
         await randomCardGenerator.generateCardNumber();
         expect(cardRepository.findCardByNumber).toHaveBeenCalledTimes(2);

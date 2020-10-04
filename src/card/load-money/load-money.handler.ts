@@ -54,7 +54,7 @@ export class LoadMoneyHandler implements ICommandHandler<LoadMoneyCommand>{
             throw new FundsTransferFailedException();
         }
 
-        this.eventBus.publish(new MoneyLoadedEvent(command.amount, card.id));
+        this.eventBus.publish(new MoneyLoadedEvent(command.amount, card.id, card.currency, card.walletId));
         return;
     }
 }

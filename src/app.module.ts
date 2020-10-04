@@ -6,6 +6,7 @@ import {Transfer} from "./transfer/transfer";
 import {WalletModule} from "./wallet/wallet.module";
 import {CardModule} from "./card/card.module";
 import {typeormDbConnection} from "./typeorm-db.connection";
+import {TransferModule} from "./transfer/transfer.module";
 
 @Module({
     imports: [
@@ -21,7 +22,8 @@ import {typeormDbConnection} from "./typeorm-db.connection";
             synchronize: true,
         }),
         WalletModule,
-        CardModule
+        CardModule,
+        TransferModule
     ]
 })
 export class AppModule {}

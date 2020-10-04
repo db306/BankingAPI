@@ -74,7 +74,7 @@ describe('Adding a new card', () => {
         const companyId = 'bc7fbf02-79d1-4e32-b3b6-07ae580377bc';
         const cardNumber = '4087551534272554';
         const cardId = '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0e';
-        const currency = Currency.GDP;
+        const currency = Currency.GBP;
         (uuid.v4 as any) = () => cardId;
         const ccv = '166';
         const mockWallet = new Wallet(walletId, 0, currency, companyId)

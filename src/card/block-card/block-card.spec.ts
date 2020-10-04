@@ -13,7 +13,7 @@ import {CardBlockedEvent} from "./card-blocked.event";
 
 describe('Block Card', () => {
     const cardId = '3b8cbd4b-2365-4ab1-a907-8e28c75225fb';
-    const currency = Currency.GDP;
+    const currency = Currency.GBP;
     const cardNumber = '4087551534272554';
     const ccv = '166';
     const userId = '67547d30-8aeb-4a69-8af2-97b71dfdbfda';

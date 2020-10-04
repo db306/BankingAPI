@@ -57,7 +57,7 @@ describe('Adding a new Wallet', () => {
         })
         it('should call the save method from the repository', async () => {
             await addWalletHandler.execute(command);
-            expect(walletRepository.save).toHaveBeenCalledWith(new Wallet(walletId, balance, currency, companyId));
+            expect(walletRepository.save).toHaveBeenCalledWith([new Wallet(walletId, balance, currency, companyId)]);
         })
         it('should publish a new WalletAddedEvent', async () => {
             await addWalletHandler.execute(command);

@@ -55,7 +55,7 @@ export class UnloadMoneyHandler implements ICommandHandler<UnloadMoneyCommand>{
             throw new FundsTransferFailedException();
         }
 
-        this.eventBus.publish(new MoneyUnloadedEvent(command.amount, card.id));
+        this.eventBus.publish(new MoneyUnloadedEvent(command.amount, card.id, card.currency, card.walletId));
         return;
     }
 }
