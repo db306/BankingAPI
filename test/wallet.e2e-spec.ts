@@ -5,15 +5,17 @@ import * as request from 'supertest';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Wallet} from "../src/wallet/wallet";
 import {isUUID} from "class-validator";
-import {Currency} from "../src/currency";
+import {typeormDbConnection} from "../src/typeorm-db.connection";
 
 describe('Wallet', () => {
     describe('/POST Wallet', () => {
         let app: INestApplication;
+        let server: any;
         beforeAll(async () => {
             const module = await Test.createTestingModule({
                 imports: [
                     TypeOrmModule.forRoot({
+                        name: typeormDbConnection,
                         type: 'sqlite',
                         database: ':memory:',
                         dropSchema: true,
@@ -27,22 +29,28 @@ describe('Wallet', () => {
             app = module.createNestApplication();
             app.useGlobalPipes(new ValidationPipe());
             await app.init();
+            server = app.getHttpServer();
         });
 
-        it('/POST wallet with valid data should return a UUID', async () => {
-            return request(app.getHttpServer())
+        it('POST wallet with valid data should return a UUID and should be able to GET it back', async () => {
+            const result = await request(server)
                 .post('/wallet')
                 .set('X-Company-Id', '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b')
                 .send({balance: 10000, currency: "EUR"})
                 .expect(201)
                 .expect(res => expect(isUUID(res.body.id)).toBeTruthy());
+
+            return request(server)
+                .get('/wallet')
+                .set('X-Company-Id', '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b')
+                .expect(200)
         });
 
-        it('/POST wallet should accept GDP', () => {
+        it('/POST wallet should accept GBP', () => {
             return request(app.getHttpServer())
                 .post('/wallet')
                 .set('X-Company-Id', '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b')
-                .send({balance: 10000, currency: "GDP"})
+                .send({balance: 10000, currency: "GBP"})
                 .expect(201)
                 .then(response => expect(isUUID(response.body.id)).toBeTruthy());
         });
@@ -51,7 +59,7 @@ describe('Wallet', () => {
             return request(app.getHttpServer())
                 .post('/wallet')
                 .set('X-Company-Id', '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b')
-                .send({balance: 10000, currency: "GDP"})
+                .send({balance: 10000, currency: "GBP"})
                 .expect(201)
                 .then(response => expect(isUUID(response.body.id)).toBeTruthy());
         });
@@ -81,7 +89,7 @@ describe('Wallet', () => {
                 })
         })
 
-        it('/POST with a wallet currency other than EUR, USD or GDP', () => {
+        it('/POST with a wallet currency other than EUR, USD or GBP', () => {
             return request(app.getHttpServer())
                 .post('/wallet')
                 .set('X-Company-Id', '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b')
@@ -94,58 +102,6 @@ describe('Wallet', () => {
                     error: "Bad Request"
                 })
         })
-
-        afterAll(async () => {
-            await app.close();
-        });
-    })
-
-    describe('/GET Wallet', () => {
-        let app: INestApplication;
-        beforeAll(async () => {
-            const module = await Test.createTestingModule({
-                imports: [
-                    TypeOrmModule.forRoot({
-                        type: 'sqlite',
-                        database: ':memory:',
-                        dropSchema: true,
-                        entities: [Wallet],
-                        synchronize: true,
-                        logging: false
-                    }),
-                    WalletModule
-                ]
-            }).compile();
-            app = module.createNestApplication();
-            app.useGlobalPipes(new ValidationPipe());
-            await app.init();
-        });
-
-        it('should return data when invoked', async () => {
-
-            const companyId = "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b";
-            const currency = Currency.GDP;
-            const balance = 2345;
-
-            const addWallet = await request(app.getHttpServer())
-                .post('/wallet')
-                .set('X-Company-Id', companyId)
-                .send({balance: balance, currency: currency})
-                .expect(201);
-
-            const walletId = addWallet.body.id;
-
-            return request(app.getHttpServer())
-                .get('/wallet')
-                .set('X-Company-Id', '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b')
-                .expect(200,
-                    [{
-                        id: walletId,
-                        currentBalance: balance,
-                        currency: currency,
-                        companyId: companyId
-                    }]);
-        });
 
         afterAll(async () => {
             await app.close();
